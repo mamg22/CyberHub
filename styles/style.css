@@ -1,0 +1,246 @@
+.php-err {
+    padding:5px;
+    background: #ffcccc;
+    border-style: solid;
+    border-color: red;
+    border-width: 3px;
+    font-family: monospace;
+    white-space: pre-line;
+}
+
+body {
+    margin: 0;
+    background: #d7ffff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    border-width: 0 0 3px;
+    border-color: red;
+    border-style: solid;
+
+    position: sticky;
+    width: 100vw;
+    top: 0;
+
+    box-shadow: 3px 0px 10px black;
+
+    background: #00e;
+
+}
+
+nav > div {
+    display: inline-block;
+    text-align: center;
+    padding: 1ex;
+    align-self: center;
+    font-weight: bold;
+    color: white;
+}
+
+nav > div > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.canvas-holder {
+    display: inline-block;
+    max-width: 40%;
+    width: 40%;
+    border: 2px solid #aaaaaa;
+    box-shadow: 3px 3px 10px black;
+    margin: 1em;
+    padding: 1em;
+}
+
+.titulo {
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+.link {
+    color: #2222ff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#main {
+    margin: 0 1em 1em;
+
+    border-width: 2px;
+    border-color: blue;
+    border-style: solid;
+    border-radius: 10px;
+
+    background: white;
+    padding: 1em;
+}
+
+#main-mini {
+    margin: 1em auto;
+
+    border-width: 2px;
+    border-color: blue;
+    border-style: solid;
+    border-radius: 10px;
+
+    background: white;
+    padding: 1em;
+}
+
+.input {
+    display: block;
+	padding-left: 20px;
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;
+	height: 3.125em;
+    width: 80%;
+	font-size: 12pt;
+	font-weight: bold;
+	letter-spacing: 1px;
+    margin: 1em auto;
+}
+
+.boton{
+	text-transform: uppercase;
+
+	color: black;
+	font-weight: bold;
+    font-size: 13pt;
+
+	border-radius: 10px;
+    border-width: 0;
+
+    margin: 1em auto;
+	height: 3.125em;
+	width: 50%;
+
+	background-color: #1DCFB6;
+}
+
+.inputs-login {
+    margin: auto;
+    text-align: center;
+}
+
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99vh;
+    width: 99vw;
+    margin: auto;
+}
+
+.page-container {
+    padding: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+.element-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.element {
+    border-width: 2px;
+    border: 2px solid #aaaaaa;
+    box-shadow: 2px 2px 4px black;
+    margin: 1em auto;
+    padding: 1em;
+    max-width: 50em;
+}
+
+.big {
+    font-size: 125%;
+}
+
+.element-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    column-gap: 1em;
+}
+
+.element-actions > button {
+	text-transform: uppercase;
+    display: inline-block;
+
+	color: black;
+	font-weight: bold;
+    font-size: 11pt;
+
+	border-radius: 10px;
+    border-width: 0;
+
+    margin: 0.333em auto;
+	height: 2.125em;
+    max-width: 12em;
+    min-width: 12em;
+    width: 30%;
+    padding: 0.25em;
+
+	background-color: #1DCFB6;
+}
+
+#agg {
+	text-transform: uppercase;
+
+	color: black;
+	font-weight: bold;
+    font-size: 13pt;
+
+	border-radius: 10px;
+    border-width: 0;
+    font-size: 12pt;
+    margin: 0.333em auto;
+    padding: 0.75em 2em;
+
+	background-color: #1DCFB6;
+    display: block;
+}
+
+.form-central {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+label {
+    font-size: 14pt;
+    margin: 0 1em 0 0;
+    font-weight: bold;
+}
+
+.insform > div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.form-central input {
+    font-size: 14pt;
+    margin-left: auto;
+}
+
+.insform > div {
+    margin-top: 1em;
+}
+
+textarea {
+    font-family: sans-serif;
+    padding: 0.3em;
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%
+}
+
+select.selector {
+    font-size: 14pt;
+}
