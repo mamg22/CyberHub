@@ -1,9 +1,11 @@
 <?php
-function setup_popup_err_handler() {
-    function my_handler(Throwable $throwable) {
-        echo "<p class='php-err'>ERROR: " . nl2br($throwable);
-        die('CRAP!');
-    }
-    set_exception_handler('my_handler');
-}
+
+// Añadir la carpeta raiz de la aplicación a los sitios para buscar inclusiones
+set_include_path(get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT']);
+// También el directorio superior, solo por si acaso
+set_include_path(get_include_path() . PATH_SEPARATOR . '..');
+
+require 'libs/common.php';
+
+
 ?>

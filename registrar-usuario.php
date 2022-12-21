@@ -5,7 +5,7 @@
     <title>Registrar nuevo usuario</title>
     <meta name="viewport" content="width=device-width">
     <script src="/libs/3rdparty/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <?php require('navbar.php') ?>
@@ -15,41 +15,41 @@
         <form class="insform">
             <div>
             <label>Nombre de usuario:</label>
-            <input type="text" placeholder="Nombre"></input>
+            <input name='nombre' type="text" placeholder="Nombre"></input>
             </div>
             <div>
             <label>Cédula:</label>
-            <input type="text" placeholder="Cédula"></input>
+            <input name='cedula' type="text" placeholder="Cédula"></input>
             </div>
             <div>
             <label>Contraseña:</label>
-            <input type="password" placeholder="Contraseña"></input>
+            <input name='clave' type="password" placeholder="Contraseña"></input>
             </div>
             <div>
             <label>Confirmar contraseña:</label>
-            <input type="password" placeholder="Confirmar contraseña"></input>
+            <input name='confclave' type="password" placeholder="Confirmar contraseña"></input>
             </div>
             <div>
             <label>Pin de recuperación:</label>
-            <input type="password" placeholder="Pin"></input>
+            <input name='pin' type="password" placeholder="Pin"></input>
             </div>
             <div>
             <label>Confirmar pin de recuperación:</label>
-            <input type="password" placeholder="Confirmar pin"></input>
+            <input name='confpin' type="password" placeholder="Confirmar pin"></input>
             </div>
             <hr/>
             <div>
             
             <label>Perfil:</label>
-            <select class="selector">
+            <select name='perfil' class="selector">
                 <option>Regular</option>
                 <option>Administrador</option>
                 <option>Solo lectura</option>
             </select>
             </div>
             <div class="element-actions">
-                <button>Cancelar</button>
-                <button>Registrar</button>
+                <input type='button'>Cancelar</input>
+                <input type='submit'>Registrar</input>
             </div>
         </form>
         </div>

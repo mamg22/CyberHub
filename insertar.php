@@ -5,7 +5,7 @@
     <title>Registrar nuevo equipo</title>
     <meta name="viewport" content="width=device-width">
     <script src="/libs/3rdparty/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <?php require('navbar.php') ?>

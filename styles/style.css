@@ -1,5 +1,6 @@
 .php-err {
     padding:5px;
+    margin: 5px;
     background: #ffcccc;
     border-style: solid;
     border-color: red;

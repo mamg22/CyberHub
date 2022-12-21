@@ -12,7 +12,6 @@ INSERT INTO Subsistema_usuario VALUES
     (2, 'Cyber'),
     (3, 'Servicio Tecnico');
 
-
 CREATE TABLE IF NOT EXISTS Perfil_usuario (
     nivel INTEGER PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
@@ -83,8 +82,6 @@ CREATE VIEW Vista_usuario AS
         ON u.subsistema = su.id
     INNER JOIN Perfil_usuario as pu
         on u.perfil = pu.nivel;
-        
-        
 
 CREATE TABLE IF NOT EXISTS Tipo_estado (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
