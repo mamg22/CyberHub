@@ -122,6 +122,28 @@ nav > div > a {
 	background-color: #1DCFB6;
 }
 
+a.buttonlink {
+    text-transform: uppercase;
+
+	color: black;
+	font-weight: bold;
+    font-size: 13pt;
+    text-decoration: none;
+    text-align: center;
+
+	border-radius: 10px;
+    border-width: 0;
+
+    margin: 1em auto;
+    max-width: 20em;
+    display: block;
+    padding: 2ex;
+
+	background-color: #1DCFB6;
+    text-decoration: none;
+    color: inherit;
+}
+
 .inputs-login {
     margin: auto;
     text-align: center;
@@ -243,5 +265,5 @@ textarea {
 }
 
 select.selector {
-    font-size: 14pt;
+    font-size: 13pt;
 }

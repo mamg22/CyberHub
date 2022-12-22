@@ -1,7 +1,5 @@
 <?php
 
-error_log("Loaded common");
-
 function setup_popup_err_handler(): void {
     function my_handler(Throwable $throwable) {
         echo "<p class='php-err'>ERROR: " . nl2br($throwable);
