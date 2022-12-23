@@ -8,7 +8,8 @@
             "type": "process",
             "command": "php",
             "args": ["--server=0:8080", "--php-ini=php.ini"],
-            "icon": {"color": "terminal.ansiMagenta"}
+            "icon": {"color": "terminal.ansiMagenta"},
+            "problemMatcher": []
         }
     ]
 }
