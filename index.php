@@ -1,34 +1,26 @@
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <title>AAAA</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="/styles/style.css">
-</head>
-<body>
-<ul>
 <?php
-    function isdotdir(string $dir)
-    {
-        if ($dir == "." || $dir == "..") {
-            return true;
-        }
-        return false;
-    }
+include $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+safe_session_start();
 
-    $dirs = scandir('.');
-    foreach ($dirs as &$dir) {
-        if (isdotdir($dir)) {
-            continue;
-        }
-        else if (! (str_ends_with($dir, ".php") or str_ends_with($dir, ".html"))) {
-            continue;
-        }
-?>
-        <li><a href="<?= $dir ?>"><?= $dir ?></a></li>
-<?php
+if (isset($_REQUEST['success'])) {
+    $s = "s=1";
+} else {
+    $s = "s=0";
+}
+
+if (isset($_SESSION['id'])) {
+    // Usuario logueado, enviar al menu principal
+    $sub_actual = $_SESSION['subsistema_actual'];
+    if ($sub_actual === SUBSISTEMA_CYBER) {
+        header("Location: /cyber/menu-principal.php?$s");
     }
+    else {
+        header("Location: /tecnico/menu-principal.php?$s");
+    }
+}
+else {
+    // Usuario no logueado, enviar al login
+    header("Location: /login.php?$s");
+}
+exit();
 ?>
-</ul>
-</body>
-</html>
