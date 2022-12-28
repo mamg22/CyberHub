@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
 safe_session_start();
 ?>
 <!DOCTYPE html>
@@ -10,6 +10,9 @@ safe_session_start();
     <title>Estadísticas: Cyber</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/styles/style.css">
+    <script type="text/javascript" src="/libs/main.js"></script>
+    <?= inyectar_mensajes() ?>
+
 </head>
 
 <body>
@@ -25,6 +28,7 @@ safe_session_start();
             Ir a sistema de<br>Servicio técnico
         </a>
     </div>
+    <div id='popup-container'></div>
 </body>
 
 </html>

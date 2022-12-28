@@ -1,11 +1,17 @@
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php'; 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <title>Registrar nuevo equipo</title>
     <meta name="viewport" content="width=device-width">
-    <script src="/libs/3rdparty/chart.umd.min.js"></script>
     <link rel="stylesheet" href="/styles/style.css">
+    <script type="text/javascript" src="/libs/main.js"></script>
+    <?= inyectar_mensajes() ?>
+
+
 </head>
 <body>
     <?php require('navbar.php') ?>
@@ -61,6 +67,7 @@
         </form>
         </div>
     </section>
+    <div id='popup-container'></div>
 </body>
 </html>
 

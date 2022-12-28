@@ -1,5 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+safe_session_start();
 
 $input_nombre = $_REQUEST['nombre'];
 $input_pin = $_REQUEST['pin'];
@@ -22,26 +23,18 @@ $stmt->bind_result($id, $nombre, $pin);
 $stmt->fetch();
 
 if (isset($id) && password_verify($input_pin, $pin)) {
-    safe_session_start();
-    $_SESSION['recuperacion'] = 1;
-    $_SESSION['id'] = $id;
+    // Usamos un id temporal para medio loguear al usuario y cambiar su contrasena
+    // El id solo es valido en las paginas de cambio de contrasena siguientes
+    // Es funcionalmente igual al id regular, pero solo valido en ese contexto
+    $_SESSION['recovery_id'] = $id;
     $_SESSION['nombre'] = $nombre;
     header("Location: /cambiarpass.php");
     exit();
 } else {
-?>
-    <html>
-
-    <head></head>
-
-    <body>
-        <script>
-            alert("Nombre de usuario o pin incorrecto\nPor favor, intentelo de nuevo");
-            window.history.back()
-        </script>
-    </body>
-
-    </html>
-<?php
+    push_mensaje(new Mensaje(
+        "Nombre de usuario o pin incorrecto<br>Por favor, intentelo de nuevo",
+        Mensaje::ERROR
+    ));
+    header("Location: /recuperarpass.php");
 }
 ?>

@@ -1,4 +1,7 @@
-<?php safe_session_start() ?>
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php'; 
+safe_session_start();
+?>
 <nav>
     <?php
     if ($_SESSION['subsistema_actual'] === SUBSISTEMA_CYBER) {

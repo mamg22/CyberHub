@@ -1,15 +1,20 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
+safe_session_start();
 
 $input_clave = $_REQUEST['clave'];
 $input_confclave = $_REQUEST['confclave'];
-$input_recuperacion = $_REQUEST['recuperacion'];
+
+$hash_clave = password_hash($input_clave, PASSWORD_BCRYPT);
+$id = $_SESSION['id'] ?? $_SESSION['recovery_id'];
+
 if (empty($input_clave)) {
     die("Clave vacía");
 }
 
-$hash_clave = password_hash($input_clave, PASSWORD_BCRYPT);
-$id = $_SESSION['id'];
+if (isset($_SESSION['recovery_id'])) {
+    session_destroy();
+}
 
 try {
     $con = conectar_bd();
@@ -22,31 +27,19 @@ $stmt = $con->prepare("UPDATE Usuario
                        WHERE id=?");
 $stmt->bind_param("si", $hash_clave, $id);
 $stmt->execute();
-// TODO: Como verificar el exito?
-$stmt->bind_result($id, $nombre, $pin);
-$stmt->fetch();
 
-if (isset($id) && password_verify($input_pin, $pin)) {
-    safe_session_start();
-    $_SESSION['recuperacion'] = 1;
-    $_SESSION['id'] = $id;
-    $_SESSION['nombre'] = $nombre;
-    header("Location: /cambiarpass.php");
-    exit();
-} else {
-?>
-    <html>
 
-    <head></head>
+if ($stmt->affected_rows === 1) {
+    push_mensaje(new Mensaje(
+        "Contraseaña cambiada correctamente", 
+        Mensaje::OK)
+    );
+    header("Location: /");
+} else { 
+    push_mensaje(new Mensaje(
+        "Nombre de usuario o pin incorrecto, intentelo de nuevo", 
+        Mensaje::ERROR)
+    );
 
-    <body>
-        <script>
-            alert("Nombre de usuario o pin incorrecto\nPor favor, intentelo de nuevo");
-            window.history.back()
-        </script>
-    </body>
-
-    </html>
-<?php
 }
 ?>

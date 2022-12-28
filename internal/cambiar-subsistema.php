@@ -1,9 +1,10 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php'; 
+include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php'; 
 safe_session_start();
 
+$subactual = $_SESSION['subsistema_actual'];
+
 if (perfil_permitido($_SESSION['perfil'], PERFIL_SUPERADMIN)) {
-    $subactual = $_SESSION['subsistema_actual'];
 
     if ($subactual === SUBSISTEMA_CYBER) {
         $_SESSION['subsistema_actual'] = SUBSISTEMA_SERVICIO;
@@ -16,16 +17,16 @@ if (perfil_permitido($_SESSION['perfil'], PERFIL_SUPERADMIN)) {
     exit();
 }
 else {
-?>
-<html>
-<head></head>
-<body>
-    <script type="text/javascript">
-        alert("Error: Usuario no autorizado para cambiar de subsistema");
-        window.history.back();
-    </script>
-</body>
-</html>
-<?php
+    push_mensaje(new Mensaje(
+        "Usuario no autorizado para cambiar de subsistema",
+        Mensaje::ERROR
+    ));
+    if ($subactual === SUBSISTEMA_CYBER) {
+        header("Location: /cyber/menu-principal.php");
+    }
+    else {
+        header("Location: /servicio/menu-principal.php");
+    }
+    exit();
 }
 ?>

@@ -1,3 +1,6 @@
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php'; 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,16 +9,20 @@
     <meta name="viewport" content="width=device-width">
     <script src="/libs/3rdparty/chart.umd.min.js"></script>
     <link rel="stylesheet" href="/styles/style.css">
+
+    <script type="text/javascript" src="/libs/main.js"></script>
+    <?= inyectar_mensajes() ?>
+
 </head>
 <body>
     <?php require('navbar.php') ?>
     <h1 class="titulo">Estadísticas: Cyber</h1>
     <section id="main">
         <div class="canvas-holder">
-            <canvas id="chart-area" />
+            <canvas id="chart-area"></canvas>
         </div>
         <div class="canvas-holder">
-            <canvas height="300" id="chart-area2" />
+            <canvas height="300" id="chart-area2"></canvas>
         </div>
     </section>
     <script>
@@ -122,5 +129,6 @@
         window.myBar = new Chart(ctx2, config2);
     };
     </script>
+    <div id='popup-container'></div>
 </body>
 </html>
