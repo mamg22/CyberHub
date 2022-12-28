@@ -15,11 +15,28 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"Root include":{
+	"root-include":{
 		"scope": "php",
 		"prefix": "rinc",
 		"body": [
-			"include \\$_SERVER['DOCUMENT_ROOT'] . '/utils.php';"
+			"include_once \\$_SERVER['DOCUMENT_ROOT'] . '/utils.php';"
+		]
+	},
+	"push-mensaje":{
+		"scope": "php",
+		"prefix": "pushm",
+		"body": [
+			"push_mensaje(new Mensaje(",
+			"\t\"$1\",",
+			"\tMensaje::${2|ERROR,OK,WARN,INFO|}",
+			"));"
+		]
+	},
+	"header-location":{
+		"scope": "php",
+		"prefix": "hloc",
+		"body": [
+			"header(\"Location: $1\");"
 		]
 	}
 }
