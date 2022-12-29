@@ -16,7 +16,7 @@ safe_session_start();
 </head>
 
 <body>
-    <?php require('navbar.php') ?>
+    <?php require('libs/navbar.php') ?>
     <h1 class="titulo">Sistema de inventario<br>Cyber Rodríguez</h1>
     <h2 class="titulo">Bienvenido, <?= $_SESSION['nombre'] ?></h2>
     <br>
