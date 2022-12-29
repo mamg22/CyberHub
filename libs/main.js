@@ -7,18 +7,34 @@ const Mensaje = {
 
 function humanizar_tipo(tipo) {
     switch (tipo) {
-        case "ok":
+        case Mensaje.ok:
             return "Exito";
-        case "error":
+        case Mensaje.error:
             return "Error";
-        case "warn":
+        case Mensaje.warn:
             return "Advertencia";
-        case "info":
+        case Mensaje.info:
             return "Informacion";
         default:
             return "???";
     }
 }
+
+function icono_para_tipo(tipo) {
+    switch (tipo) {
+        case Mensaje.ok:
+            return "fa-check";
+        case Mensaje.error:
+            return "fa-xmark";
+        case Mensaje.warn:
+            return "fa-exclamation-triangle";
+        case Mensaje.info:
+            return "fa-info";
+        default:
+            return "???";
+    }
+}
+
 
 function agregar_popup(contenido, tipo) {
     var box = document.createElement("div");
@@ -28,6 +44,10 @@ function agregar_popup(contenido, tipo) {
         this.remove();
     });
 
+    var icono = document.createElement("span");
+    // Icono FontAwesome, xl: extra grande (1.5x), fw: ancho fijo
+    icono.classList.add("popup-icon", "fa", "fa-xl", "fa-fw", icono_para_tipo(tipo));
+
     var close = document.createElement("span");
     close.innerHTML = "&times;";
     close.classList.add("popup-close");
@@ -36,7 +56,7 @@ function agregar_popup(contenido, tipo) {
     mensaje.innerHTML = `<b>${humanizar_tipo(tipo)}:</b><br>${contenido}`;
     mensaje.classList.add("popup-msg");
 
-    box.append(close, mensaje);
+    box.append(icono, mensaje, close);
 
     popup_container = document.getElementById("popup-container");
     popup_container.append(box);
