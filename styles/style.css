@@ -281,6 +281,9 @@ select.selector {
     max-width: 25em;
     box-shadow: black 0 0 1ex;
     user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .popup-box.hidden {
@@ -306,7 +309,6 @@ select.selector {
 }
 
 .popup-close {
-    margin-left: 15px;
     color: white;
     font-weight: bold;
     float: right;
@@ -345,4 +347,10 @@ select.selector {
     }
   }
   
-  
+.popup-icon {
+    padding-right: 0.75ex;
+}
+
+.popup-msg {
+    flex-grow: 9999;
+}
