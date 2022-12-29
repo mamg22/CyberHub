@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 session_start();
 ?>
 <!doctype html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">

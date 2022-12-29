@@ -4,7 +4,7 @@ safe_session_start();
 
 ?>
 <!doctype html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
