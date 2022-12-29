@@ -5,13 +5,12 @@ include $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Administración de usuarios</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/styles/style.css">
     <script type="text/javascript" src="/libs/main.js"></script>
     <?= inyectar_mensajes() ?>
 
-
+    <title>Administración de usuarios</title>
 </head>
 <body>
     <?php require('libs/navbar.php') ?>
