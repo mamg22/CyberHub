@@ -7,11 +7,7 @@ safe_session_start();
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, inicial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style.css">
-    <script type="text/javascript" src="/libs/main.js"></script>
+<?php include('libs/head-common.php') ?>
     <?= inyectar_mensajes() ?>
 
     <title>Cambiar contraseña para <?= $_SESSION['nombre'] ?></title>

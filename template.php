@@ -4,13 +4,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>$title</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/styles/style.css">
-    <script type="text/javascript" src="/libs/main.js"></script>
+<?php include('libs/head-common.php') ?>
     <?= inyectar_mensajes() ?>
 
+    <title>$title</title>
 
 </head>
 <body>

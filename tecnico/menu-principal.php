@@ -5,13 +5,10 @@ safe_session_start();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Estadísticas: Cyber</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/styles/style.css">
-    <script type="text/javascript" src="/libs/main.js"></script>
+    <?php include('libs/head-common.php') ?>
     <?= inyectar_mensajes() ?>
 
+    <title>Estadísticas: Cyber</title>
 
 </head>
 <body>
