@@ -14,7 +14,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 
 </head>
 <body>
-    <?php require('navbar.php') ?>
+    <?php require('libs/navbar.php') ?>
     <h1 class="titulo">Inventario de equipos</h1>
     <section id="main">
         <button id="agg">Agregar equipo</button>

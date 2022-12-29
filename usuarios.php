@@ -14,7 +14,7 @@ include $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 
 </head>
 <body>
-    <?php require('navbar.php') ?>
+    <?php require('libs/navbar.php') ?>
     <h1 class="titulo">Administración de usuarios</h1>
     <section id="main">
         <button id="agg">Registrar usuario</button>

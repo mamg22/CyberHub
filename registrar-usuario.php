@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
 
 </head>
 <body>
-    <?php require('navbar.php') ?>
+    <?php require('libs/navbar.php') ?>
     <h1 class="titulo">Registrar nuevo usuario</h1>
     <section id="main">
         <div class="form-central">
