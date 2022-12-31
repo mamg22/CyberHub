@@ -310,12 +310,10 @@ select.selector {
 
 .popup-close {
     color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+    padding-left: 0.5ex;
+    margin-bottom: auto;
 }
 
 .popup-close:hover {

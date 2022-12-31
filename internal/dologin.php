@@ -5,7 +5,12 @@ safe_session_start();
 $input_nombre = $_REQUEST['nombre'];
 $input_clave = $_REQUEST['clave'];
 if (empty($input_nombre) || empty($input_clave)) {
-    die("Usuario o clave vacío");
+    push_mensaje(new Mensaje(
+        Mensajes_comun::ERR_INCOMPLETO,
+        Mensaje::ERROR
+    ));
+    header("Location: /login.php");
+    exit();
 }
 
 try {
@@ -13,8 +18,7 @@ try {
 }
 catch (mysqli_sql_exception $e) {
     push_mensaje(new Mensaje(
-        "Ha ocurrido un error al conectar con la base de datos. Por favor, intentelo de nuevo.<br>" .
-        "Si el problema persiste, contacte al administrador.",
+        Mensajes_comun::ERR_CONECTANDO_BD,
         Mensaje::ERROR
     ));
     header("Location: /login.php");
@@ -42,10 +46,7 @@ catch (mysqli_sql_exception $e) {
 
 
 if (isset($id) && password_verify($input_clave, $clave)) {
-    $_SESSION['id'] = $id;
-    $_SESSION['nombre'] = $nombre;
-    $_SESSION['subsistema'] = $subsistema;
-    $_SESSION['perfil'] = $perfil;
+    $_SESSION['usuario'] = new Usuario($id, $nombre, $perfil, $subsistema);
 
     switch ($subsistema) {
         case SUBSISTEMA_TODOS:
@@ -62,7 +63,7 @@ if (isset($id) && password_verify($input_clave, $clave)) {
 }
 else {
     push_mensaje(new Mensaje(
-        "Nombre de usuario o contraseña incorrecto<br>Por favor, intentelo de nuevo",
+        "Nombre de usuario o contraseña incorrecto.<br>Por favor, intentelo de nuevo",
         Mensaje::WARN,
     ));
     header("Location: /login.php");

@@ -6,32 +6,52 @@ $input_clave = $_REQUEST['clave'];
 $input_confclave = $_REQUEST['confclave'];
 
 $hash_clave = password_hash($input_clave, PASSWORD_BCRYPT);
-$id = $_SESSION['id'] ?? $_SESSION['recovery_id'];
+$id = $_SESSION['recovery_id'] ?? $_SESSION['usuario']->id();
 
 if (empty($input_clave)) {
-    die("Clave vacía");
+    push_mensaje(new Mensaje(
+        Mensajes_comun::ERR_INCOMPLETO,
+        Mensaje::ERROR
+    ));
+    header("Location: /cambiarpass.php");
+    exit();
 }
 
-if (isset($_SESSION['recovery_id'])) {
-    session_destroy();
-}
 
 try {
     $con = conectar_bd();
 } catch (mysqli_sql_exception $e) {
-    die("ERROR CRITICO: " . nl2br($e));
+    push_mensaje(new Mensaje(
+        Mensajes_comun::ERR_CONECTANDO_BD,
+        Mensaje::ERROR
+    ));
+    header("Location: /");
+    exit();
 }
 
-$stmt = $con->prepare("UPDATE Usuario
-                       SET clave=?
-                       WHERE id=?");
-$stmt->bind_param("si", $hash_clave, $id);
-$stmt->execute();
+try {
+    $stmt = $con->prepare("UPDATE Usuario
+    SET clave=?
+    WHERE id=?");
+    $stmt->bind_param("si", $hash_clave, $id);
+    $stmt->execute();
+} catch (mysqli_sql_exception $e) {
+    push_mensaje(new Mensaje(
+        "Ha ocurrido un error al cambiar la contraseña. Por favor, intentelo de nuevo.<br>" .
+        "Si el problema persiste, contacte al administrador.",
+        Mensaje::ERROR
+    ));
+    header("Location: /cambiarpass.php");
+    exit();
+}
 
+if (isset($_SESSION['recovery_id'])) {
+    session_unset();
+}
 
 if ($stmt->affected_rows === 1) {
     push_mensaje(new Mensaje(
-        "Contraseaña cambiada correctamente", 
+        "Contraseña cambiada correctamente", 
         Mensaje::OK)
     );
     header("Location: /");
@@ -40,6 +60,7 @@ if ($stmt->affected_rows === 1) {
         "Nombre de usuario o pin incorrecto, intentelo de nuevo", 
         Mensaje::ERROR)
     );
+    header("Location: /cambiarpass.php");
 
 }
 ?>

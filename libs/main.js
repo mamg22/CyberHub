@@ -25,13 +25,13 @@ function icono_para_tipo(tipo) {
         case Mensaje.ok:
             return "fa-check";
         case Mensaje.error:
-            return "fa-xmark";
+            return "fa-ban";
         case Mensaje.warn:
             return "fa-exclamation-triangle";
         case Mensaje.info:
             return "fa-info";
         default:
-            return "???";
+            return "";
     }
 }
 
