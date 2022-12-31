@@ -32,6 +32,16 @@
 			"));"
 		]
 	},
+	"push-mensaje-comun":{
+		"scope": "php",
+		"prefix": "pushmc",
+		"body": [
+			"push_mensaje(new Mensaje(",
+			"\tMensajes_comun::$1,",
+			"\tMensaje::${2|ERROR,OK,WARN,INFO|}",
+			"));"
+		]
+	},
 	"header-location":{
 		"scope": "php",
 		"prefix": "hloc",
