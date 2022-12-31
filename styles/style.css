@@ -171,8 +171,8 @@ a.buttonlink {
 
 .element-container {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .element {
