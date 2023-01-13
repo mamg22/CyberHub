@@ -64,7 +64,26 @@
 			"header(\"Location: $3\");",
 			"exit();"
 		]
+	},
+	"font-awesome-icon":{
+		"scope": "html",
+		"prefix": "fai",
+		"body": "<span class='fa $1'></span>"
+	},
+	"wrap-in-htmlspecialchars":{
+		"scope": "php,html",
+		"prefix": "htmlec",
+		"body": "<?= htmlspecialchars($TM_SELECTED_TEXT) ?>"
+	},
+	"wrap-in-echo-tag": {
+		"scope": "html,php",
+		"prefix": "phpet",
+		"body": "<?= $TM_SELECTED_TEXT ?>"
+	},
+	"$_REQUEST variable": {
+		"scope": "php",
+		"prefix": "REQ",
+		"body": "\\$_REQUEST['$1']"
 	}
-
 
 }

@@ -10,7 +10,16 @@
             "args": ["--server=0:8080", "--php-ini=php.ini"],
             "icon": {"color": "terminal.ansiMagenta"},
             "problemMatcher": [],
-            "isBackground": true
+            "isBackground": true,
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Rebuild DB",
+            "type": "shell",
+            "command": "mysql < bd/bdcyber.sql; mysql < bd/datos-de-prueba.sql",
+            "problemMatcher": []
         }
     ]
 }
