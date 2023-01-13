@@ -1,5 +1,7 @@
-DROP DATABASE bdcyber;
-CREATE DATABASE IF NOT EXISTS bdcyber;
+DROP DATABASE IF EXISTS bdcyber;
+CREATE DATABASE IF NOT EXISTS bdcyber
+    CHARACTER SET = 'utf8mb4'
+    COLLATE = 'utf8mb4_unicode_ci';
 USE bdcyber;
 
 CREATE TABLE IF NOT EXISTS Subsistema_usuario (
@@ -95,25 +97,27 @@ INSERT INTO Tipo_estado VALUES
     (4, 'En reparacion'),
     (5, 'Desincorporado');
 
-
-CREATE TABLE IF NOT EXISTS Estado_equipo (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    tipo_estado INTEGER NOT NULL REFERENCES Tipo_estado(id),
-    razon VARCHAR(256) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS Ubicacion_equipo (
     id INTEGER PRIMARY KEY,
     nombre_ubicacion VARCHAR(50) NOT NULL
 );
 
+INSERT INTO Ubicacion_equipo VALUES
+    (1, 'Sala Principal'),
+    (2, 'Oficina'),
+    (3, 'Depósito'),
+    (4, 'Servicio Técnico'),
+    (5, 'Adiestramiento'),
+    (6, 'Otro');
+
 CREATE TABLE IF NOT EXISTS Equipo (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     identificador VARCHAR(30) UNIQUE NOT NULL,
     desc_hardware VARCHAR(500) NOT NULL,
     desc_software VARCHAR(500) NOT NULL,
     ubicacion INTEGER NOT NULL REFERENCES Ubicacion_equipo(id),
-    estado INTEGER NOT NULL REFERENCES Estado_equipo(id)
+    estado INTEGER NOT NULL REFERENCES Tipo_estado(id),
+    razon_estado VARCHAR(256) NOT NULL
 );
 
 CREATE VIEW Vista_equipo AS
@@ -123,16 +127,14 @@ CREATE VIEW Vista_equipo AS
         e.desc_software AS desc_software,
         e.ubicacion AS ubicacion,
         e.estado AS estado,
+        e.razon_estado AS razon_estado,
         ue.nombre_ubicacion AS nombre_ubicacion,
-        te.nombre_estado AS nombre_estado,
-        ee.razon AS razon_estado
+        te.nombre_estado AS nombre_estado
     FROM Equipo AS e
     INNER JOIN Ubicacion_equipo AS ue
         ON e.ubicacion = ue.id
-    INNER JOIN Estado_equipo AS ee
-        ON e.estado = ee.id
     INNER JOIN Tipo_estado AS te
-        ON ee.tipo_estado = te.id;
+        ON e.estado = te.id;
 
 CREATE TABLE IF NOT EXISTS Tipo_repuesto (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -153,12 +155,12 @@ INSERT INTO Tipo_repuesto VALUES
     (11, 'Teclado'),
     (12, 'Mouse'),
     (13, 'Cable'),
-    (14, 'Miscelaneos');
+    (14, 'Otro');
 
 CREATE TABLE IF NOT EXISTS Repuesto (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     tipo INTEGER NOT NULL REFERENCES Tipo_repuesto(id),
-    detalles VARCHAR(300) NOT NULL,
+    detalles VARCHAR(300) NOT NULL UNIQUE,
     cantidad INTEGER NOT NULL
 );
 
@@ -173,7 +175,7 @@ CREATE VIEW Vista_repuesto AS
         ON r.tipo = tr.id;
 
 CREATE TABLE IF NOT EXISTS Cliente (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(75) NOT NULL,
     telefono_contacto VARCHAR(20) NOT NULL,
     cedula VARCHAR(15) NOT NULL
@@ -190,12 +192,12 @@ INSERT INTO Estado_trabajo VALUES
     (3, 'Completado');
 
 CREATE TABLE IF NOT EXISTS Trabajo_reparacion (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     descripcion_equipo VARCHAR(150) NOT NULL,
     problema VARCHAR(500) NOT NULL,
-    identificador VARCHAR(15) UNIQUE  NOT NULL,
-    monto_total DECIMAL(20, 3) UNSIGNED NOT NULL,
-    monto_cancelado DECIMAL(20, 3) UNSIGNED NOT NULL,
+    identificador VARCHAR(30) UNIQUE  NOT NULL,
+    monto_total DECIMAL(20, 2) UNSIGNED NOT NULL,
+    monto_cancelado DECIMAL(20, 2) UNSIGNED NOT NULL,
     estado_t INTEGER NOT NULL REFERENCES Estado_trabajo(id),
     cliente INTEGER NOT NULL REFERENCES Cliente(id)
 );
@@ -209,7 +211,12 @@ CREATE VIEW Vista_trabajos AS
         t.monto_cancelado AS monto_cancelado,
         t.estado_t AS estado_t,
         t.cliente AS cliente,
-        et.nombre AS nombre_estado_t
+        et.nombre AS nombre_estado_t,
+        c.nombre AS nombre_cliente,
+        c.telefono_contacto AS telefono_cliente,
+        c.cedula AS cedula_cliente
     FROM Trabajo_reparacion AS t
     INNER JOIN Estado_trabajo AS et
-        ON t.estado_t = et.id;
+        ON t.estado_t = et.id
+    INNER JOIN Cliente AS c
+        ON t.cliente = c.id;
