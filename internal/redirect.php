@@ -1,6 +1,5 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
-session_start();
 
 $redir_target = $_REQUEST['target'];
 $sub_actual = $_SESSION['subsistema_actual'];

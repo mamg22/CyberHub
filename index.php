@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
-safe_session_start();
+
 
 if (isset($_SESSION['recovery_id'])) {
     unset($_SESSION['recovery_id']);

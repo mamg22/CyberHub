@@ -73,3 +73,77 @@ function setup_popups(lista_popups) {
 
     });
 }
+
+function handle_menu() {
+    /**
+     * @var HTMLDivElement menu_toggle
+     */
+    var menu_toggle = document.getElementById('nav-menu');
+    var menu_icon = document.getElementById('nav-menu-icon');
+    var menu = document.getElementById('main-menu');
+
+    if (!menu) {
+        return;
+    }
+
+    menu_toggle.addEventListener('click', function() {
+        menu_icon.classList.toggle("fa-rotate-90");
+        menu.classList.toggle('visible');
+    })
+}
+
+window.addEventListener('DOMContentLoaded', handle_menu);
+
+function form_error_handler(ev) {
+    if (!ev.target.checkValidity()) {
+        agregar_popup("Uno o más campos del formulario están incompletos o son inválidos")
+        ev.preventDefault();
+    }
+    ev.preventDefault();
+}
+
+function setup_error_handlers() {
+    forms = Array.from(document.forms);
+    forms.forEach(element => {
+        element.addEventListener('submit', form_error_handler);
+    });
+}
+
+//window.addEventListener('DOMContentLoaded', setup_error_handlers);
+
+function popup_help(ev) {
+    var msg = ev.target.getAttribute("help-content") ?? 'No se tiene ayuda sobre este elemento';
+    agregar_popup(msg, Mensaje.info);
+}
+
+function setup_help() {
+    var helps = Array.from(document.getElementsByClassName("help-item"));
+    helps.forEach(element => {
+        element.addEventListener('click', popup_help);
+    });
+}
+
+window.addEventListener('DOMContentLoaded', setup_help);
+
+function confirmation_handler(ev) {
+    // Mensaje personalizado o tiramos un catch-all generico que funciona igual
+    var msg = ev.target.getAttribute("confirm-content") ?? '¿Está seguro de que desea realizar esta acción? No se podrá deshacer';
+    console.log(msg);
+    if (confirm(msg)) {
+        return true;
+    }
+    else {
+        ev.preventDefault();
+        return false;
+    }
+}
+
+function setup_confirmation_handlers() {
+    var confirmables = Array.from(document.getElementsByClassName("needs-confirm"));
+    console.log(confirmables);
+    confirmables.forEach(element => {
+        element.addEventListener('click', confirmation_handler);
+    });
+}
+
+window.addEventListener('DOMContentLoaded', setup_confirmation_handlers);

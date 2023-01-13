@@ -1,7 +1,6 @@
 @import url(3rdparty/fontawesome.min.css);
 @import url(3rdparty/solid.css);
 
-
 .php-err {
     padding: 5px;
     margin: 5px;
@@ -19,27 +18,35 @@ body {
     font-family: sans-serif;
 }
 
+header {
+
+    position: sticky;
+    width: 100%;
+    top: 0;
+}
+
 nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.4ex 1ex;
+    box-sizing: border-box;
+    z-index: 5;
 
     border-width: 0 0 3px;
     border-color: red;
     border-style: solid;
 
-    position: sticky;
-    width: 100vw;
-    top: 0;
+    min-height: 5ex;
 
     box-shadow: 3px 0px 10px black;
 
-    background: #00e;
+    background: #00b;
 
 }
 
-nav>div {
-    display: inline-block;
+nav .nav-item {
     text-align: center;
     padding: 1ex;
     align-self: center;
@@ -47,9 +54,52 @@ nav>div {
     color: white;
 }
 
-nav>div>a {
+nav .nav-item a {
     text-decoration: none;
     color: inherit;
+}
+
+#nav-user-info {
+    cursor: default;
+}
+
+#nav-menu {
+    cursor: pointer;
+}
+
+#nav-menu-icon {
+    transition: all 0.2s;
+}
+
+#main-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-width: 30em;
+    right: 0;
+    position: absolute;
+    display: none;
+    box-shadow: 0px 3px 10px black;
+}
+
+#main-menu.visible {
+    display: initial;
+}
+
+.menu-item {
+    display: block;
+    padding: 1ex;
+    border: 1px solid red;
+    border-color: red;
+    border-style: solid;
+    border-width: 0px 2px 2px;
+    background-color: #00a;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: #006;
 }
 
 .canvas-holder {
@@ -83,6 +133,10 @@ nav>div>a {
 
     background: white;
     padding: 1em;
+}
+
+#main.stats {
+    padding: 1em 0.2em;
 }
 
 #main-mini {
@@ -173,7 +227,11 @@ a.buttonlink {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: stretch;
+    align-items: stretch;
 }
+
 
 .element {
     border-width: 2px;
@@ -181,7 +239,21 @@ a.buttonlink {
     box-shadow: 2px 2px 4px black;
     margin: 1em auto;
     padding: 1em;
-    max-width: 50em;
+    max-width: 35em;
+}
+
+.element.stats {
+    margin: 0.3em auto;
+    max-width: 95%;
+    max-height: 80vh;
+    width: 95%;
+    height: 80vh;
+    padding: 0.2em;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 .big {
@@ -191,13 +263,21 @@ a.buttonlink {
 .element-actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     column-gap: 1em;
 }
 
-.element-actions>button {
+.element-actions a,
+.element-actions button,
+.element-actions input,
+#reg-cliente {
     text-transform: uppercase;
-    display: inline-block;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 
     color: black;
     font-weight: bold;
@@ -207,17 +287,22 @@ a.buttonlink {
     border-width: 0;
 
     margin: 0.333em auto;
-    height: 2.125em;
     max-width: 12em;
     min-width: 12em;
     width: 30%;
-    padding: 0.25em;
+    padding: 0.6em 0.25em;
 
     background-color: #1DCFB6;
+    cursor: pointer;
+}
+
+.element-actions *.dangerous {
+    background-color: #cf1d1d;
 }
 
 #agg {
     text-transform: uppercase;
+    text-decoration: none;
 
     color: black;
     font-weight: bold;
@@ -230,7 +315,49 @@ a.buttonlink {
     padding: 0.75em 2em;
 
     background-color: #1DCFB6;
-    display: block;
+   display: inline-block;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    column-gap: 2em;
+    margin: 1em auto;
+}
+
+.pagination-info {
+    text-align: center;
+}
+
+.pagination-button {
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: black;
+    font-weight: bold;
+    font-size: 13pt;
+
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 11pt;
+    margin: 0.5em 2em;
+    padding: 0.75em 2em;
+
+    background-color: #1DCFB6;
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-button.pagination-hidden {
+    visibility: hidden;
 }
 
 .form-central {
@@ -249,6 +376,14 @@ label {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.insform>div>.element-actions {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 
@@ -284,6 +419,7 @@ select.selector {
     display: flex;
     flex-direction: row;
     align-items: center;
+    cursor: pointer;
 }
 
 .popup-box.hidden {
@@ -327,6 +463,11 @@ select.selector {
     top: 1ex;
     left: 1ex;
     width: 95vw;
+    max-width: 25em;
+}
+
+#popup-container:empty {
+    display: none;
 }
 
 @keyframes slideout {
@@ -351,4 +492,79 @@ select.selector {
 
 .popup-msg {
     flex-grow: 9999;
+}
+
+#blocker {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(170, 170, 170, 0.6);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: none;
+
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#blocker.visible {
+    display: flex;
+}
+
+#blocker p {
+    background-color: white;
+    border-radius: 1em;
+    border-color: gray;
+    border-style: dashed;
+    border-width: 0.2em;
+
+    padding: 1em;
+    margin: 1em;
+
+    max-width: 20em;
+    user-select: none;
+    cursor: default;
+}
+
+#montos {
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+    border-collapse: collapse;
+}
+
+#montos * {
+    font-size: large;
+    padding: 1em 2em;
+}
+
+#montos td + td {
+    border-left: 2px solid black;
+}
+
+#montos tbody tr:nth-child(odd) {
+    background: #dddddd;
+}
+
+#montos .cantidad {
+    font-family: monospace;
+    text-align: right;
+}
+
+#montos .descripcion {
+    font-weight: bold;
+}
+
+#montos #totales {
+    border-width: 2px 0 0;
+    border-style: solid;
+    border-color: #444444;
+}
+
+input:invalid {
+    box-shadow: 0px 0px 0.5em red;
 }

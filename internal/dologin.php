@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/utils.php';
-safe_session_start();
+
 
 $input_nombre = $_REQUEST['nombre'];
 $input_clave = $_REQUEST['clave'];

@@ -47,7 +47,8 @@ class Usuario
         $perfil_ok =  $this->perfil <= $perfil_minimo;
 
         $subsistema_ok = $this->subsistema === $subsistema_esperado ||
-            $this->subsistema === SUBSISTEMA_TODOS;
+            $this->subsistema === SUBSISTEMA_TODOS ||
+            $subsistema_esperado === SUBSISTEMA_TODOS;
 
         return $perfil_ok && $subsistema_ok;
     }
