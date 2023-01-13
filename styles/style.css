@@ -575,6 +575,5 @@ form.submitted textarea:invalid
 
 .help-item {
     color: gray;
-    background: gray;
     cursor: pointer;
 }

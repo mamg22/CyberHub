@@ -137,9 +137,12 @@ if ($con) {
             </div>
             <?php if ($id_objetivo == 'nuevo') { ?>
             <div>
-            <label for="clave">Contraseña:</label>
+            <label for="clave">Contraseña:
+                <?= help_icon("La contraseña debe contener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número") ?>
+            </label>
             <input name='clave' type="password" placeholder="Contraseña"
-                minlength="8" required>
+                minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                title="La contraseña debe contener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número">
             </div>
             <div>
             <label for="confclave">Confirmar contraseña:</label>
@@ -147,14 +150,17 @@ if ($con) {
                 minlength="8" required>
             </div>
             <div>
-            <label for="pin">Pin de recuperación:</label>
+            <label for="pin">Pin de recuperación:
+                <?= help_icon("El pin debe contener sólo numeros, y se requieren al menos 10 números para un pin válido") ?>
+            </label>
             <input name='pin' type="password" placeholder="Pin"
-                minlength="1" required>
+                minlength="10" pattern="[0-9]{10,}" required
+                title="El pin debe contener sólo numeros, y se requieren al menos 10 números para un pin válido">
             </div>
             <div>
             <label for="confpin">Confirmar pin de recuperación:</label>
             <input name='confpin' type="password" placeholder="Confirmar pin"
-                minlength="1" required>
+                minlength="10" required>
             </div>
             <?php } ?>
             <hr/>
