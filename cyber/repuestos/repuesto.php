@@ -82,10 +82,11 @@ if ($con) {
                     "id" => $id_objetivo,
                 ]))
             ?>">
+            <?= help_icon("El formulario no le dejará introducir más texto una vez alcance el límite de tamaño.") ?>
             <input type="hidden" name="id" 
                 value="<?= $info->id ?? 'nuevo' ?>">
             <div>
-                <label>Tipo:</label>
+                <label for="tipo">Tipo:</label>
                 <select required name="tipo" class="selector">
                     <option disabled value='' 
                         <?php isset($info) or print('selected') ?>
@@ -103,14 +104,14 @@ if ($con) {
                 </select>
             </div>
             <div>
-                <label>Cantidad:</label>
+                <label for="cantidad">Cantidad:</label>
                 <input name="cantidad" type="number" placeholder="Cantidad"
                     min="0" required step="1"
                     value='<?= $info->cantidad ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Detalles:</label><br>
+                <label for="detalles">Detalles:</label><br>
                 <textarea name="detalles" cols="80" rows="6" placeholder="Detalles o descripción del repuesto"
                 maxlength="400" required
                 ><?= $info->detalles ?? '' ?></textarea>

@@ -81,24 +81,25 @@ if ($con) {
                     "id" => $id_objetivo,
                 ]))
             ?>">
+            <?= help_icon("El formulario no le dejará introducir más texto una vez alcance el límite de tamaño.") ?>
             <input type="hidden" name="id" 
                 value="<?= $info->id ?? 'nuevo' ?>">
             <div>
-                <label>Nombre:</label>
+                <label for="nombre">Nombre:</label>
                 <input name="nombre" type="text" placeholder="Nombre"
                     required maxlength="75"
                     value='<?= $info->nombre ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Teléfono de contacto:</label>
+                <label for="telefono_contacto">Teléfono de contacto:</label>
                 <input name="telefono_contacto" type="text" placeholder="Teléfono de contacto"
                     required maxlength="15"
                     value='<?= $info->telefono_contacto ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Cédula:</label>
+                <label for="cedula">Cédula:</label>
                 <input name="cedula" type="text" placeholder="Cédula"
                     value='<?= $info->cedula ?? '' ?>'>
                 </input>
@@ -133,9 +134,8 @@ if ($con) {
                 ?>">Eliminar totalmente
                 </button>
             </div>
-            <span class='help-item fa fa-question-circle fa-lg' 
-                help-content='La opción "Eliminar totalmente" eliminará al cliente y todos los trabajos asignados
-                              por éste. Usar con precaución.'></span>
+            <?= help_icon('La opción "Eliminar totalmente" eliminará al cliente y todos los trabajos asignados
+                              por éste. Usar con precaución.'); ?>
             <?php } ?>
         </form>
         </div>

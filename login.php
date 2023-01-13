@@ -16,10 +16,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'utils.php';
         <h1 class="titulo">Iniciar sesión</h1>
         <section id="main-mini">
             <form class="inputs-login" action='/internal/dologin.php' method='POST'>
-                <input autofocus required pattern='[0-9a-zA-Z_-]+' autocomplete="username" name='nombre'
+                <input autofocus required autocomplete="username" name='nombre'
                     class="input" type="text" placeholder="Nombre de usuario"
-                    maxlength="25" minlength="1"
-                    title="El nombre de usuario solo puede contener los caracteres a-z, A-Z, 0-9 y _, ">
+                    maxlength="25" minlength="1">
                 <input required name='clave' class="input"
                     autocomplete="current-password" type="password" placeholder="Contraseña"
                     minlength="1">

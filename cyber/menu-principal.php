@@ -19,6 +19,12 @@ validar_acceso(PERFIL_SOLOLECTURA, SUBSISTEMA_CYBER);
     <h1 class="titulo">Sistema de inventario<br>Cyber Rodríguez</h1>
     <h2 class="titulo">Bienvenido, <?= $_SESSION['usuario']->nombre() ?></h2>
     <p class="titulo">Haga click en el menú para<br>ver las opciones disponibles</p>
+    <p class="titulo">
+        Haga click en los íconos de 
+        <span class='help-item fa fa-question-circle fa-lg' 
+            help-content='La ayuda se mostrará en una notificación como ésta'></span><br>
+        para obtener más información y ayuda.
+    </p>
     <br>
     <div id='popup-container'></div>
 </body>

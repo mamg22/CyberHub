@@ -46,6 +46,21 @@ if ($con) {
         exit();
     }
 }
+
+if (empty($equipos_por_ubicacion)) {
+    push_mensaje(new Mensaje(
+        "No hay equipos registrados en el sistema, las estadísticas de equipos no tendrán información.",
+        Mensaje::WARN
+    ));
+}
+
+if (empty($repuestos_por_tipo)) {
+    push_mensaje(new Mensaje(
+        "No hay repuestos registrados en el sistema, las estadísticas de trabajos no tendrán información.",
+        Mensaje::WARN
+    ));
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

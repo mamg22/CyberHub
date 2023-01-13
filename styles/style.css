@@ -65,6 +65,7 @@ nav .nav-item a {
 
 #nav-menu {
     cursor: pointer;
+    user-select: none;
 }
 
 #nav-menu-icon {
@@ -565,6 +566,15 @@ select.selector {
     border-color: #444444;
 }
 
-input:invalid {
+form.submitted input:invalid
+form.submitted select:invalid
+form.submitted textarea:invalid
+{
     box-shadow: 0px 0px 0.5em red;
+}
+
+.help-item {
+    color: gray;
+    background: gray;
+    cursor: pointer;
 }

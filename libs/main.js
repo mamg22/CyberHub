@@ -140,10 +140,31 @@ function confirmation_handler(ev) {
 
 function setup_confirmation_handlers() {
     var confirmables = Array.from(document.getElementsByClassName("needs-confirm"));
-    console.log(confirmables);
     confirmables.forEach(element => {
         element.addEventListener('click', confirmation_handler);
     });
 }
 
 window.addEventListener('DOMContentLoaded', setup_confirmation_handlers);
+
+function validation_handler(ev) {
+    var f = ev.target;
+    f.classList.add("submitted");
+}
+
+function setup_validation_handlers() {
+    var forms = Array.from(document.forms);
+    console.log(forms);
+    forms.forEach(element => {
+        element.addEventListener('submit', validation_handler);
+    });
+}
+
+window.addEventListener('DOMContentLoaded', setup_validation_handlers);
+
+function get_input_by_name(name) {
+    var inputs = Array.from(document.querySelectorAll('input,textarea,select'));
+    return inputs.filter(element => {
+        return element.getAttribute("name") == name;
+    })[0];
+}

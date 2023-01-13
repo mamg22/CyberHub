@@ -88,3 +88,11 @@ function validar_acceso(int $perfil_minimo, int $subsistema_esperado): void {
         exit();
     }
 }
+
+function help_icon(string $texto)
+{
+    return <<<HTML
+    <span class='help-item fa fa-question-circle fa-lg' 
+        help-content='$texto'></span><br>
+    HTML;
+}

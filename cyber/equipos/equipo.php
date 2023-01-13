@@ -88,29 +88,30 @@ if ($con) {
                     "id" => $id_objetivo,
                 ]))
             ?>">
+            <?= help_icon("El formulario no le dejará introducir más texto una vez alcance el límite de tamaño.") ?>
             <input type="hidden" name="id" 
                 value="<?= $info->id ?? 'nuevo' ?>">
             <div>
-                <label>Identificador:</label>
+                <label for="identificador">Identificador:</label>
                 <input name="identificador" type="text" placeholder="Identificador"
                     value='<?= $info->identificador ?? '' ?>'
                     maxlength="30" minlength="1" required>
                 </input>
             </div>
             <div>
-                <label>Hardware:</label><br>
+                <label for="desc_hardware">Hardware:</label><br>
                 <textarea name="desc_hardware" cols="80" rows="6" placeholder="Descripción del hardware"
                 required maxlength="500"
                 ><?= $info->desc_hardware ?? '' ?></textarea>
             </div>
             <div>
-                <label>Software:</label><br>
+                <label for="desc_software">Software:</label><br>
                 <textarea name="desc_software" cols="80" rows="6" placeholder="Descripción del software"
                 required maxlength="500"
                 ><?= $info->desc_software ?? '' ?></textarea>
             </div>
             <div>
-                <label>Ubicación:</label>
+                <label for="ubicacion">Ubicación:</label>
                 <select required name="ubicacion" class="selector">
                     <option disabled value='' 
                         <?php isset($info) or print('selected') ?>
@@ -128,7 +129,7 @@ if ($con) {
                 </select>
             </div>
             <div>
-                <label>Estado:</label>
+                <label for="estado">Estado:</label>
                 <select required name="estado" class="selector">
                     <option disabled value='' 
                         <?php isset($info) or print('selected') ?>
@@ -146,7 +147,7 @@ if ($con) {
                 </select>
             </div>
             <div>
-                <label>Razón de estado:</label><br>
+                <label for="razon_estado">Razón de estado:</label><br>
                 <textarea name="razon_estado" cols="80" rows="6" placeholder="Descripción del estado del equipo"
                 required maxlength="500"
                 ><?= $info->razon_estado ?? '' ?></textarea>

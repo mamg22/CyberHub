@@ -58,6 +58,45 @@ if ($con) {
 <?php include('libs/head-common.php') ?>
     <?= inyectar_mensajes() ?>
 
+    <script>
+        function validar_confimacion_clave(ev) {
+            var clave = document.querySelector('*[name="clave"]');
+            var confirmacion = document.querySelector('*[name="confclave"]');
+            if (clave.value !== confirmacion.value) {
+                clave.setCustomValidity(
+                    "La contraseña y la confirmación de la contraseña no coinciden. Por favor, introduzcala de nuevo.");
+            }
+            else {
+                clave.setCustomValidity('');
+            }
+        }
+
+        function validar_confimacion_pin(ev) {
+            var pin = document.querySelector('*[name="pin"]');
+            var confirmacion = document.querySelector('*[name="confpin"]');
+            if (pin.value !== confirmacion.value) {
+                pin.setCustomValidity(
+                    "El pin y la confirmación del pin no coinciden. Por favor, introduzcalo de nuevo.");
+            }
+            else {
+                pin.setCustomValidity('');
+            }
+        }
+
+        function setup_validacion() {
+            var clave = document.querySelector('*[name="clave"]');
+            var confclave = document.querySelector('*[name="confclave"]');
+            clave.addEventListener('input', validar_confimacion_clave);
+            confclave.addEventListener('input', validar_confimacion_clave);
+
+            var pin = document.querySelector('*[name="pin"]');
+            var confpin = document.querySelector('*[name="confpin"]');
+            pin.addEventListener('input', validar_confimacion_pin);
+            confpin.addEventListener('input', validar_confimacion_pin);
+        }
+
+        window.addEventListener('DOMContentLoaded', setup_validacion)
+    </script>
     <title><?= $titulo ?></title>
 </head>
 <body>
@@ -79,16 +118,18 @@ if ($con) {
                     "id" => $id_objetivo,
                 ]))
             ?>">
+            <?= help_icon("El formulario no le dejará introducir más texto una vez alcance el límite de tamaño.") ?>
             <input type="hidden" name="id" 
                 value="<?= htmlentities($info_usuario->id ?? 'nuevo') ?>">
             <div>
-            <label>Nombre de usuario:</label>
+            <label for="nombre">Nombre de usuario: <?= help_icon("El nombre de usuario solo puede contener carácateres alfanuméricos (0-9, A-Z, a-z), el guión bajo (_) y el guión (-)")?></label>
             <input name='nombre' type="text" placeholder="Nombre"
                 value='<?= $info_usuario->nombre ?? '' ?>' 
-                maxlength="25" minlength="1" required>
+                maxlength="25" minlength="1" required pattern='[0-9a-zA-Z_-]+'
+                title="El nombre de usuario solo puede contener carácateres alfanuméricos (0-9, A-Z, a-z), el guión bajo (_) y el guión (-)">
             </div>
             <div>
-            <label>Cédula:</label>
+            <label for="cedula">Cédula:</label>
             <input name='cedula' type="text" placeholder="Cédula"
                 value='<?= $info_usuario->cedula ?? '' ?>'
                 maxlength="15" minlength="1" required>
@@ -96,22 +137,22 @@ if ($con) {
             </div>
             <?php if ($id_objetivo == 'nuevo') { ?>
             <div>
-            <label>Contraseña:</label>
+            <label for="clave">Contraseña:</label>
             <input name='clave' type="password" placeholder="Contraseña"
-                minlength="1" required>
+                minlength="8" required>
             </div>
             <div>
-            <label>Confirmar contraseña:</label>
+            <label for="confclave">Confirmar contraseña:</label>
             <input name='confclave' type="password" placeholder="Confirmar contraseña"
-                minlength="1" required>
+                minlength="8" required>
             </div>
             <div>
-            <label>Pin de recuperación:</label>
+            <label for="pin">Pin de recuperación:</label>
             <input name='pin' type="password" placeholder="Pin"
                 minlength="1" required>
             </div>
             <div>
-            <label>Confirmar pin de recuperación:</label>
+            <label for="confpin">Confirmar pin de recuperación:</label>
             <input name='confpin' type="password" placeholder="Confirmar pin"
                 minlength="1" required>
             </div>
@@ -119,7 +160,7 @@ if ($con) {
             <hr/>
             <div>
             
-            <label>Perfil:</label>
+            <label for="perfil">Perfil:</label>
             <select required name='perfil' class="selector">
                 <option disabled value='' 
                     <?php isset($info_usuario) or print('selected') ?>

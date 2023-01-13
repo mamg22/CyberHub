@@ -106,6 +106,29 @@ if ($con) {
         }
 
         window.addEventListener('load', setup_reg_handler);
+
+        function validar_montos(ev) {
+            var total = document.querySelector('*[name="monto_total"]');
+            var cancelado = document.querySelector('*[name="monto_cancelado"]');
+            if (total.valueAsNumber < cancelado.valueAsNumber) {
+                cancelado.setCustomValidity(
+                    "El monto cancelado no puede ser mayor que el monto total");
+            }
+            else {
+                cancelado.setCustomValidity('');
+            }
+        }
+
+        function setup_validacion() {
+            var total = document.querySelector('*[name="monto_total"]');
+            var cancelado = document.querySelector('*[name="monto_cancelado"]');
+
+            total.addEventListener('input', validar_montos);
+            cancelado.addEventListener('input', validar_montos);
+        }
+
+        window.addEventListener('DOMContentLoaded', setup_validacion)
+
     </script>
 </head>
 <body>
@@ -127,10 +150,11 @@ if ($con) {
                     "id" => $id_objetivo,
                 ]))
             ?>">
+            <?= help_icon("El formulario no le dejará introducir más texto una vez alcance el límite de tamaño.") ?>
             <input type="hidden" name="id" 
                 value="<?= $info->id ?? 'nuevo' ?>">
             <div>
-                <label>Cliente:</label>
+                <label for="cliente">Cliente:</label>
                 <select required name="cliente" class="selector">
                     <option disabled value='' 
                         <?php isset($info) or print('selected') ?>
@@ -151,40 +175,44 @@ if ($con) {
                 <a class="buttonlink" id="reg-cliente" href="#">Registrar nuevo cliente</a>
             </div>
             <div>
-                <label>Identificador:</label>
+                <label for="identificador">Identificador:</label>
                 <input name="identificador" type="text" placeholder="Identificador del equipo"
                     required maxlength="30"
                     value='<?= $info->identificador ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Descripción del equipo:</label><br>
+                <label for="descripcion_equipo">Descripción del equipo:</label><br>
                 <textarea name="descripcion_equipo" cols="80" rows="6" placeholder="Descripción del equipo"
                 required maxlength="150"
                 ><?= $info->descripcion_equipo ?? '' ?></textarea>
             </div>
             <div>
-                <label>Problema:</label><br>
+                <label for="problema">Problema:</label><br>
                 <textarea name="problema" cols="80" rows="6" placeholder="Problema que presenta el equipo"
                 required maxlength="500"
                 ><?= $info->problema ?? '' ?></textarea>
             </div>
             <div>
-                <label>Monto total:</label>
+                <label for="monto_total">Monto total: <?= 
+                    help_icon("El monto total, en múltiplos de 0.01") ?>
+                </label>
                 <input name="monto_total" type="number" placeholder="Monto total"
                     min="0" step="0.01" required
                     value='<?= $info->monto_total ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Monto cancelado:</label>
+                <label for="monto_cancelado">Monto cancelado: <?= 
+                    help_icon("El monto cancelado, en múltiplos de 0.01") ?>
+                </label>
                 <input name="monto_cancelado" type="number" placeholder="Monto cancelado"
                     min="0" step="0.01" required
                     value='<?= $info->monto_cancelado ?? '' ?>'>
                 </input>
             </div>
             <div>
-                <label>Estado del trabajo:</label>
+                <label for="estado_t">Estado del trabajo:</label>
                 <select required name="estado_t" class="selector">
                     <option disabled value='' 
                         <?php isset($info) or print('selected') ?>
@@ -204,7 +232,7 @@ if ($con) {
             <hr/>
             
             <div class="element-actions">
-                <button type='button' onclick="location.href='/tecnico/trabajo'">Volver atrás</button>
+                <button type='button' onclick="location.href='/tecnico/trabajos'">Volver atrás</button>
                 <button type='reset'>Deshacer cambios</button>
                 <button type='submit'>
                     <?php 

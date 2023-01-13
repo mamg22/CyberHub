@@ -21,7 +21,7 @@ if ($con) {
             FROM Vista_trabajos
             GROUP BY estado_t");
         $stmt->execute();
-        $equipos_por_ubicacion = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $trabajos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
         $stmt = $con->prepare("SELECT 
                 sum(monto_cancelado) AS total_cancelado,
@@ -41,6 +41,15 @@ if ($con) {
         exit();
     }
 }
+
+if (empty($trabajos)) {
+    push_mensaje(new Mensaje(
+        "No hay trabajos registrados en el sistema, las estadísticas de trabajos no tendrán información.",
+        Mensaje::WARN
+    ));
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,15 +77,15 @@ if ($con) {
                 <tbody>
                     <tr id='cancelados'>
                         <td class='descripcion'>Cancelado</td>
-                        <td class='cantidad'><?= $montos->total_cancelado ?></td>
+                        <td class='cantidad'><?= $montos->total_cancelado ?? '0.00' ?></td>
                     </tr>
                     <tr id='por-cancelar'>
                         <td class='descripcion'>Por cancelar</td>
-                        <td class='cantidad'><?= $montos->total_por_cancelar ?></td>
+                        <td class='cantidad'><?= $montos->total_por_cancelar ?? '0.00' ?></td>
                     </tr>
                     <tr id='totales'>
                         <td class='descripcion'>Total</td>
-                        <td class='cantidad'><?= $montos->total_completo ?></td>
+                        <td class='cantidad'><?= $montos->total_completo ?? '0.00' ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -92,10 +101,10 @@ if ($con) {
         type: 'pie',
         data: {
             datasets: [{
-                data: <?= json_encode(array_column(array_values($equipos_por_ubicacion), "total")) ?>,
+                data: <?= json_encode(array_column(array_values($trabajos), "total")) ?>,
                 label: 'Trabajos'
             }],
-            labels: <?= json_encode(array_column(array_values($equipos_por_ubicacion), "nombre_estado_t")) ?>
+            labels: <?= json_encode(array_column(array_values($trabajos), "nombre_estado_t")) ?>
         },
         options: {
             plugins: {
