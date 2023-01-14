@@ -20,6 +20,12 @@
             "type": "shell",
             "command": "mysql < bd/bdcyber.sql; mysql < bd/datos-de-prueba.sql",
             "problemMatcher": []
+        },
+        {
+            "label": "Rebuild Docs",
+            "type": "shell",
+            "command": "pandoc README.md -o README.pdf -V mainfont='Liberation Sans' --pdf-engine xelatex",
+            "problemMatcher": []
         }
     ]
 }
