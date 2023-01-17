@@ -112,9 +112,9 @@ else if ($modo == 'actualizar') {
 else if ($modo == 'eliminar') {
     try {
         // No permitir eliminar si el cliente tiene trabajos asignados
-        $stmt = $con->prepare("SELECT cliente
+        $stmt = $con->prepare("SELECT id
                                 FROM Trabajo_reparacion
-                                WHERE id=?");
+                                WHERE cliente=?");
         $qid = $_REQUEST['id'] == 'nuevo' ? -1 : $_REQUEST['id'];
         $stmt->bind_param("i", $qid);
         $stmt->execute();
