@@ -2,6 +2,39 @@
 
 Este programa forma parte del proyecto que se ha realizado en la comunidad del Cyber Rodríguez como parte del Proyecto Sociotecnológico III de la Universidad Politécnica Territorial de los Altos Mirandinos "Cecilio Acosta" (UPTAMCA).
 
+# Funciones
+
+## Básico
+
+* Administrar equipos (computadoras) del cyber.
+* Administrar repuestos en el almacén del cyber.
+* Administrar clientes del servicio técnico.
+* Administrar trabajos de reparación del servicio técnico.
+* Generación de gráficos y estadísticas en base a la información registrada.
+
+## Administrativo
+
+* Administrar usuarios del sistema y actualizar su información.
+* Permitir a cada usuario cambiar su contraseña
+* Separación en dos subsistemas: "Inventario de cyber" y "Servicio técnico"
+* Perfiles de usuario como control de acceso:
+    * Solo Lectura: Puede entrar al sistema y visualizar la información y las
+    estadísticas. No puede efectuar modificaciones.
+    * Regular: Usuario regular, puede visualizar la información, además de poder
+    registrar, modificar y eliminar.
+    * Administrador: Posee las funciones de un usuario Regular, con el
+    adiconal de poder administar los usuarios de su subsistema.
+    * Super Administrador: Acceso total al sistema, puede acceder a ambos
+    subsistemas y actúa como Administrador en ámbos.
+* Recuperación de contraseñas mediante un PIN secreto del usuario.
+
+## Internos / Implementación
+
+* Pase de mensajes de notificación para el usuario enviados entre paginas
+mediante una pila de mensajes. También utilizable desde javascript para mostrar
+notificaciones instantaneas, como las utilizadas en los botones de ayuda.
+* Restricción de acceso a páginas a las que el usuario no esté autorizado.
+
 # Requisitos
 
 Se recomienda instalar XAMPP 8.1 o versiones más nuevas. [Click aquí para descargarlo](https://www.apachefriends.org/es/index.html). Instalando XAMPP 8.1 o posterior se puede instalar fácilmente todos estos requisitos.
