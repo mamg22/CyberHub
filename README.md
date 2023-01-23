@@ -31,7 +31,7 @@ Este programa forma parte del proyecto que se ha realizado en la comunidad del C
 ## Internos / Implementación
 
 * Pase de mensajes de notificación para el usuario enviados entre paginas
-mediante una pila de mensajes. También utilizable desde javascript para mostrar
+mediante una pila de mensajes (Message flashing). También utilizable desde javascript para mostrar
 notificaciones instantaneas, como las utilizadas en los botones de ayuda.
 * Restricción de acceso a páginas a las que el usuario no esté autorizado.
 
