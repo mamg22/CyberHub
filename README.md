@@ -1,6 +1,8 @@
 # Sistema de gestión para el Cyber Rodríguez
 
-Este programa forma parte del proyecto que se ha realizado en la comunidad del Cyber Rodríguez como parte del Proyecto Sociotecnológico III de la Universidad Politécnica Territorial de los Altos Mirandinos "Cecilio Acosta" (UPTAMCA).
+[Leer en inglés/Read in english](README.en.md)
+
+Este programa forma parte del proyecto que se ha realizado en la comunidad del Cyber Rodríguez como parte de la asignatura de Proyecto Sociotecnológico III, durante el Trayecto 3 del Programa Nacional de Formación en Informática (PNFI) en la Universidad Politécnica Territorial de los Altos Mirandinos "Cecilio Acosta" (UPTAMCA).
 
 # Funciones
 
@@ -11,6 +13,7 @@ Este programa forma parte del proyecto que se ha realizado en la comunidad del C
 * Administrar clientes del servicio técnico.
 * Administrar trabajos de reparación del servicio técnico.
 * Generación de gráficos y estadísticas en base a la información registrada.
+* Ayuda integrada e interactiva.
 
 ## Administrativo
 
@@ -20,48 +23,37 @@ Este programa forma parte del proyecto que se ha realizado en la comunidad del C
 * Perfiles de usuario como control de acceso:
     * Solo Lectura: Puede entrar al sistema y visualizar la información y las
     estadísticas. No puede efectuar modificaciones.
-    * Regular: Usuario regular, puede visualizar la información, además de poder
-    registrar, modificar y eliminar.
+    * Regular: Usuario regular, puede visualizar, registrar, modificar y eliminar información.
     * Administrador: Posee las funciones de un usuario Regular, con el
-    adiconal de poder administar los usuarios de su subsistema.
+    adicional de poder administar los usuarios de su subsistema.
     * Super Administrador: Acceso total al sistema, puede acceder a ambos
-    subsistemas y actúa como Administrador en ámbos.
+    subsistemas y actúa como Administrador en ámbos. Nota: No es un usuario para uso regular, existe solo como un último recurso para casos inusuales, por ejemplo: Todos los administradores de un subsistema son eliminados.
 * Recuperación de contraseñas mediante un PIN secreto del usuario.
 
 ## Internos / Implementación
 
 * Pase de mensajes de notificación para el usuario enviados entre paginas
-mediante una pila de mensajes (Message flashing). También utilizable desde javascript para mostrar
+mediante una pila de mensajes (Message flashing). Utilizable del lado del servidor y también del lado del cliente con javascript para mostrar
 notificaciones instantaneas, como las utilizadas en los botones de ayuda.
 * Restricción de acceso a páginas a las que el usuario no esté autorizado.
 
 # Requisitos
 
-Se recomienda instalar XAMPP 8.1 o versiones más nuevas. [Click aquí para descargarlo](https://www.apachefriends.org/es/index.html). Instalando XAMPP 8.1 o posterior se puede instalar fácilmente todos estos requisitos.
-
-Para ejecutar este programa, se deben tener instalado los siguientes programas:
-
 * PHP 8.1 o más reciente
 * Base de datos MySQL o MariaDB
 * Servidor web
 
+XAMPP 8.1 o más nuevo incluye todo el software requerido por este programa.
+
 # Instalación
 
-## Con XAMPP
+1. Colocar los archivos en la carpeta raíz del servidor web.
 
-1. Extraer el contenido del archivo ZIP en la carpeta `htdocs` de XAMPP (`C:\xampp\htdocs`); debe colocarse en la carpeta `htdocs` y no una carpeta dentro de ésta. Ejemplo: La carpeta `bd` debe quedar en `C:\xampp\htdocs\bd` luego de copiar los archivos.
+2. Importar la base de datos usando el archivo `bd/bdcyber.sql`.
 
-2. Iniciar el servidor web y la base de datos (Iniciar Apache y MySQL en XAMPP).
+3. OPCIONAL: Importar el archivo `bd/datos-de-prueba.sql` para cargar información de prueba en la base de datos.
 
-3. Configurar la base de datos: Importar el archivo `bdcyber.sql` que se encuentra en la carpeta `bd` usando phpMyAdmin.
-
-4. OPCIONAL: Importar el archivo `datos-de-prueba.sql` que también se encuentra en la carpeta `bd` usando phpMyAdmin para agregar para probar la aplicación.
-
-5. Abrir la aplicación en el navegador con `http://localhost/`.
-
-## Otros
-
-Para otras configuraciones, seguir los pasos que se hacen en XAMPP, cambiando las ubicaciones de los archivos y la herramienta de gestión de base de datos a las que se estén utilizando.
+4. Abrir la aplicación en un navegador yendo a `http://localhost/` o la dirección y/o puerto configurado en el servidor.
 
 # Usuarios por defecto
 
@@ -88,4 +80,7 @@ La aplicación ha sido probada exitosamente en los siguientes navegadores:
 
 La versión móvil de Mozilla Firefox no provee la funcionalidad necesaria en algunas partes de la aplicación, por lo que no se recomienda utilizarlo para esta aplicación.
 
-El componente que se ejecuta en el lado del servidor ha sido probado exitosamente en sistemas Windows (Windows 11) y Linux (Fedora 37).
+El componente que se ejecuta en el lado del servidor ha sido probado exitosamente en:
+
+* Windows: Windows 11, usando XAMPP 8.1.
+* Linux: Fedora 37, usando Apache 2.4.54, PHP 8.1.14, MariaDB 15.1.
