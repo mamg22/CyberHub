@@ -40,6 +40,13 @@ This program is part of a project that has been carried out in the Cyber Rodríg
 
 XAMPP 8.1 or newer include all the software required by this program.
 
+## Bundled dependencies
+
+These dependencies have been bundled in the system's source code:
+
+* [FontAwesome](https://fontawesome.com/) 5 (In `/styles/3rdparty`)
+* [ChartJS](https://www.chartjs.org/) 4.0.0+ (In `/libs/3rdparty`)
+
 # Instalation
 
 1. Put all the files and folder in the web server root.
