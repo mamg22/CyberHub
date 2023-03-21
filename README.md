@@ -45,6 +45,13 @@ notificaciones instantaneas, como las utilizadas en los botones de ayuda.
 
 XAMPP 8.1 o más nuevo incluye todo el software requerido por este programa.
 
+## Requisitos incluidos
+
+Estos requisitos han sido incluidos en el código fuente del sistema:
+
+* [FontAwesome](https://fontawesome.com/) 5 (En `/styles/3rdparty`)
+* [ChartJS](https://www.chartjs.org/) 4.0.0+ (En `/libs/3rdparty`)
+
 # Instalación
 
 1. Colocar los archivos en la carpeta raíz del servidor web.
