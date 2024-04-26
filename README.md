@@ -1,8 +1,8 @@
-# Sistema de gestión para el Cyber Rodríguez
+# CyberHub
 
 [Leer en inglés/Read in english](README.en.md)
 
-Este programa forma parte del proyecto que se ha realizado en la comunidad del Cyber Rodríguez como parte de la asignatura de Proyecto Sociotecnológico III, durante el Trayecto 3 del Programa Nacional de Formación en Informática (PNFI) en la Universidad Politécnica Territorial de los Altos Mirandinos "Cecilio Acosta" (UPTAMCA).
+Programa para la gestión de diversas áreas en un cyber, actualmente provee funcionalidad para la gestión de equipos y sus repuestos, así como también gestión de clientes y trabajos pendientes para un servicio técnico.
 
 # Funciones
 

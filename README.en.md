@@ -1,8 +1,8 @@
-# Cyber Rodríguez management system
+# CyberHub
 
 [Leer en español/Read in spanish](README.md)
 
-This program is part of a project that has been carried out in the Cyber Rodríguez community as part of the Sociotechnological Project III subject, during the 3rd year of the Programa Nacional de Formación en Informática (PNFI, National Informatics Training Program) at the Universidad Politécnica Territorial de los Altos Mirandinos "Cecilio Acosta" (UPTAMCA, Territorial Polytechnic University of Los Altos Mirandinos "Cecilio Acosta").
+Program for the management of diverse areas on a cybercafe, currently provides functionality for managing equipement and replacement parts, and for managing clients and pending work for a technical service.
 
 # Functionality
 
