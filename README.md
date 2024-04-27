@@ -1,72 +1,67 @@
 # CyberHub
 
-[Leer en inglés/Read in english](README.en.md)
+[Leer en español/Read in spanish](README.es.md)
 
-Programa para la gestión de diversas áreas en un cyber, actualmente provee funcionalidad para la gestión de equipos y sus repuestos, así como también gestión de clientes y trabajos pendientes para un servicio técnico.
+Program for the management of diverse areas on a cybercafe, currently provides functionality for managing equipement and replacement parts, and for managing clients and pending work for a technical service.
 
-# Funciones
+# Functionality
 
-## Básico
+## Basic
 
-* Administrar equipos (computadoras) del cyber.
-* Administrar repuestos en el almacén del cyber.
-* Administrar clientes del servicio técnico.
-* Administrar trabajos de reparación del servicio técnico.
-* Generación de gráficos y estadísticas en base a la información registrada.
-* Ayuda integrada e interactiva.
+* Manage equipement (Computers) of the cyber.
+* Manage inventory of replacement parts in the cyber's depot.
+* Manage technical service (repair shop) clients.
+* Manage technical service repair jobs.
+* Generate graphs and statistics based on the stored information.
+* Integrated and interactive help.
 
-## Administrativo
+## Management
 
-* Administrar usuarios del sistema y actualizar su información.
-* Permitir a cada usuario cambiar su contraseña
-* Separación en dos subsistemas: "Inventario de cyber" y "Servicio técnico"
-* Perfiles de usuario como control de acceso:
-    * Solo Lectura: Puede entrar al sistema y visualizar la información y las
-    estadísticas. No puede efectuar modificaciones.
-    * Regular: Usuario regular, puede visualizar, registrar, modificar y eliminar información.
-    * Administrador: Posee las funciones de un usuario Regular, con el
-    adicional de poder administar los usuarios de su subsistema.
-    * Super Administrador: Acceso total al sistema, puede acceder a ambos
-    subsistemas y actúa como Administrador en ámbos. Nota: No es un usuario para uso regular, existe solo como un último recurso para casos inusuales, por ejemplo: Todos los administradores de un subsistema son eliminados.
-* Recuperación de contraseñas mediante un PIN secreto del usuario.
+* Manage system users and update their information.
+* Allow each user to change their password.
+* Separation into two subsystems:  "Inventario de cyber" and "Servicio técnico" ("Cyber inventory" and "Technical service")
+* User profiles as access control:
+    * Solo Lectura (Read Only): Can access the system and view information and statistics. Cannot make any modifications.
+    * Regular: Regular user, can view, register, modify and delete information.
+    * Administrador (Administrator): Has the same functions as a Regular user does, with the aditional of being able to manage users of their subsystem.
+    * Super Administrator (Super Administrator): Total system access, can access both subsystems and functions as an adminstrator on both of them. Note: This is not a regular use user, it exists only as a last resort for unusual cases, for example: All administrators on a subsystem are removed.
+* Password recovery using a user secret PIN code.
 
-## Internos / Implementación
+## Internal / Implementation
 
-* Pase de mensajes de notificación para el usuario enviados entre paginas
-mediante una pila de mensajes (Message flashing). Utilizable del lado del servidor y también del lado del cliente con javascript para mostrar
-notificaciones instantaneas, como las utilizadas en los botones de ayuda.
-* Restricción de acceso a páginas a las que el usuario no esté autorizado.
+* User notification message passing sent between pages using a message stack (Message flashing). Usable on the server-side and also on the client-side using javascript for showing instant notification, such as the ones used in the help buttons.
+* Restricting access to pages the user isn't autorized to see.
 
-# Requisitos
+# Requirements
 
-* PHP 8.1 o más reciente
-* Base de datos MySQL o MariaDB
-* Servidor web
+* PHP 8.1 or newer.
+* MySQL or MariaDB database.
+* Web server with PHP support (Such as Apache, nginx or the builtin PHP server)
 
-XAMPP 8.1 o más nuevo incluye todo el software requerido por este programa.
+XAMPP 8.1 or newer include all the software required by this program.
 
-## Requisitos incluidos
+## Bundled dependencies
 
-Estos requisitos han sido incluidos en el código fuente del sistema:
+These dependencies have been bundled in the system's source code:
 
-* [FontAwesome](https://fontawesome.com/) 5 (En `/styles/3rdparty`)
-* [ChartJS](https://www.chartjs.org/) 4.0.0+ (En `/libs/3rdparty`)
+* [FontAwesome](https://fontawesome.com/) 5 (In `/styles/3rdparty`)
+* [ChartJS](https://www.chartjs.org/) 4.0.0+ (In `/libs/3rdparty`)
 
-# Instalación
+# Instalation
 
-1. Colocar los archivos en la carpeta raíz del servidor web.
+1. Put all the files and folder in the web server root.
 
-2. Importar la base de datos usando el archivo `bd/bdcyber.sql`.
+2. Import the database using the file `bd/bdcyber.sql`.
 
-3. OPCIONAL: Importar el archivo `bd/datos-de-prueba.sql` para cargar información de prueba en la base de datos.
+3. OPTIONAL: Import the file `bd/datos-de-prueba.sql` to load test data onto the database.
 
-4. Abrir la aplicación en un navegador yendo a `http://localhost/` o la dirección y/o puerto configurado en el servidor.
+4. Open the app in a browser by going to `http://localhost/` or the configured address and/or port of your server.
 
-# Usuarios por defecto
+# Default users
 
-El sistema incluye los siguientes usuarios por defecto:
+The system includes the following default users:
 
-| Usuario    | contraseña | pin     | Perfil              | Subsistema       |
+| Username   | password   | pin     | Profile             | Subsystem        |
 |------------|------------|---------|---------------------|------------------|
 | root       | root       | 1234321 | Super Administrador | Todos            |
 | admincyber | admincyber | 1234    | Administrador       | Cyber            |
@@ -76,18 +71,17 @@ El sistema incluye los siguientes usuarios por defecto:
 | rocyber    | rocyber    | 1234    | Solo Lectura        | Cyber            |
 | roserv     | roserv     | 1234    | Solo Lectura        | Servicio Técnico |
 
+# Compatibility
 
-# Compatibilidad
-
-La aplicación ha sido probada exitosamente en los siguientes navegadores:
+The application has been tested successfully on these web browsers:
 
 * Microsoft Edge
 * Google Chrome
-* Mozilla Firefox (sólo versión de escritorio)
+* Mozilla Firefox (Only desktop)
 
-La versión móvil de Mozilla Firefox no provee la funcionalidad necesaria en algunas partes de la aplicación, por lo que no se recomienda utilizarlo para esta aplicación.
+The mobile version of Mozilla Firefox does not provide the functionality required in some parts of the app, it is not recommended to use it with this program.
 
-El componente que se ejecuta en el lado del servidor ha sido probado exitosamente en:
+The server side component has been tested successfully on:
 
-* Windows: Windows 11, usando XAMPP 8.1.
-* Linux: Fedora 37, usando Apache 2.4.54, PHP 8.1.14, MariaDB 15.1.
+* Windows: Windows 11, running XAMPP 8.1.
+* Linux: Fedora 37, running Apache 2.4.54, PHP 8.1.14, MariaDB 15.1.
